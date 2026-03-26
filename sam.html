@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login & Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe6b3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 350px;
+            background: #ffbb33;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* HIDE the actual radio buttons */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Style the Labels to look like Tabs */
+        .tab-group {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #cc5500;
+        }
+
+        label {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #003300;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        label:hover {
+            opacity: 1;
+        }
+
+        /* FORMS styling */
+        .form-content {
+            display: none; /* Hide both forms by default */
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #cc0000;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login { background-color: #0077cc; }
+        .btn-signup { background-color: #cc5500; }
+
+        /* --- THE MAGIC CSS LOGIC --- */
+        
+        /* If Radio 1 is checked, highlight Label 1 and show Form 1 */
+        #tab-1:checked ~ .tab-group label[for="tab-1"] {
+            border-bottom: 3px solid #003300;
+            opacity: 1;
+        }
+        #tab-1:checked ~ .login-form {
+            display: block;
+        }
+
+        /* If Radio 2 is checked, highlight Label 2 and show Form 2 */
+        #tab-2:checked ~ .tab-group label[for="tab-2"] {
+            border-bottom: 3px solid #003300;
+            opacity: 1;
+        }
+        #tab-2:checked ~ .signup-form {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <input type="radio" id="tab-1" name="tab" checked>
+        <input type="radio" id="tab-2" name="tab">
+
+        <div class="tab-group">
+            <label for="tab-1">Login</label>
+            <label for="tab-2">Sign Up</label>
+        </div>
+
+        <div class="form-content login-form">
+            <h2 style="text-align:center; margin-top:0;">Welcome Back</h2>
+            <form action="submit.php" method="post">
+                <input type="hidden" name="action" value="login">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+        </div>
+
+        <div class="form-content signup-form">
+            <h2 style="text-align:center; margin-top:0;">Create Account</h2>
+            <form action="submit.php" method="post">
+                <input type="hidden" name="action" value="signup">
+                <input type="text" name="username" placeholder="Choose Username" required>
+                <input type="password" name="password" placeholder="Choose Password" required>
+                <button type="submit" class="btn-signup">Sign Up</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>
